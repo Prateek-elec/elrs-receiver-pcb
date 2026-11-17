@@ -1,76 +1,75 @@
-# ELRS Receiver PCB (ESP8285 + SX1280) 📡
+<div align="center">
 
-A compact **ExpressLRS (ELRS) receiver hardware design** built around **ESP8285** and the **SX1280** LoRa transceiver.
-This repository contains the full **KiCad schematic and PCB layout**, along with documentation and renders.
+# DIY ExpressLRS 2.4 GHz Receiver PCB
 
----
+**A tiny, open-source ELRS receiver you can study, modify and build: ESP8285 + Semtech SX1280, U.FL antenna, 4-pad UART output, designed in KiCad 9.**
 
-## ✅ Features
-- **ESP8285 MCU** (WiFi-enabled microcontroller, ELRS compatible)
-- **SX1280 LoRa transceiver** for 2.4GHz ELRS
-- **3.3V LDO regulation** using **MIC5219-3.3YMS**
-- **Reverse polarity / input protection** using Schottky diode
-- **RF output via coax / U.FL connector** support
-- Status LED + reset/boot support
-- Compact 2-layer PCB layout suitable for UAV / RC applications
+![KiCad](https://img.shields.io/badge/KiCad-9.0-314CB0?style=for-the-badge&logo=kicad&logoColor=white)
+![ExpressLRS](https://img.shields.io/badge/ExpressLRS-2.4%20GHz-0ea5e9?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-layout%20complete-f59e0b?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-22c55e?style=for-the-badge)
 
----
+<img src="docs/images/3d-top.png" width="45%" alt="3D render, top: ESP8285, pads and bind button"/> <img src="docs/images/3d-bottom.png" width="45%" alt="3D render, bottom: SX1280 and U.FL connector"/>
 
-## 🧩 Block Overview
-### 1) MCU Section (ESP8285)
-- Powered from 3.3V rail
-- Boot/enable circuitry included
-- UART pads/testpoints for debugging and flashing
-
-### 2) RF Section (SX1280)
-- SPI interface from ESP8285 (MISO/MOSI/SCK/CS)
-- Reset and BUSY signals connected
-- RF output routed to coax connector
-- 52 MHz reference crystal provided
-
-### 3) Power Section
-- Input → Schottky protection → **MIC5219 3.3V LDO**
-- Local decoupling capacitors placed close to ICs
+</div>
 
 ---
 
-## 📷 Project Preview
-> Add your images in `docs/images/` and they will show here.
+## What it is
 
-### Schematic
-![Schematic](docs/images/schematic.png)
+[ExpressLRS](https://www.expresslrs.org/) is the open-source RC link most FPV pilots now fly. Commercial receivers are tiny and cheap, but you rarely see *how* they're built. This repo is the full hardware design for a minimal 2.4 GHz ELRS receiver, small enough to read in one sitting.
 
-### PCB Layout
-![PCB Layout](docs/images/pcb-layout.png)
+## Hardware at a glance
 
----
+| Block | Part | Notes |
+|---|---|---|
+| MCU | **ESP8285** | ESP8266 core with built-in flash, the standard ELRS RX MCU |
+| Radio | **Semtech SX1280** | 2.4 GHz LoRa / FLRC transceiver on SPI (with BUSY + RESET lines) |
+| Reference clock | 52 MHz crystal | For the SX1280 |
+| RF output | L-C network → **U.FL** coax | Plug in any 2.4 GHz dipole / T-antenna |
+| Power | **MIC5219-3.3** LDO + Schottky diode | 5 V in, 3.3 V out |
+| Interface | **TX · RX · 5V · GND** pads | Connects straight to your flight controller UART (CRSF) |
+| Extras | Bind / boot button, status LED, UART test points for flashing | |
 
-## 📂 Repository Structure
-- `hardware/kicad/` → KiCad project files (`.kicad_pro`, `.kicad_sch`, `.kicad_pcb`)
-- `docs/images/` → screenshots (schematic / PCB / 3D view)
-- `fabrication/` → Gerbers, drill files, BOM, pick & place (optional)
+The board uses double-sided placement: the MCU and pads on top, the radio and antenna connector underneath.
 
----
+## Design files
 
-## ✅ Getting Started (KiCad)
-1. Install **KiCad 8 / KiCad 9**
-2. Open the project file:
-   - `hardware/kicad/elrs_receiver.kicad_pro`
-3. View schematic:
-   - `elrs_receiver.kicad_sch`
-4. View PCB:
-   - `elrs_receiver.kicad_pcb`
-5. Export Gerbers (if needed):
-   - PCB Editor → **File → Plot…**
+<table>
+<tr>
+<td width="50%"><img src="docs/images/schematic.png" alt="Schematic"/><br/><sub><b>Schematic</b>: <code>hardware/kicad/elrs_receiver.kicad_sch</code></sub></td>
+<td width="50%"><img src="docs/images/pcb-layout.png" alt="PCB layout"/><br/><sub><b>PCB layout</b>: <code>hardware/kicad/elrs_receiver.kicad_pcb</code></sub></td>
+</tr>
+</table>
 
----
+## Open it yourself
 
-## ⚠️ Notes / Disclaimer
-This is a personal hardware project made for learning and experimentation.  
-Please validate your RF layout, matching network, and manufacturing constraints before using it in real flight systems.
+1. Install [KiCad 9](https://www.kicad.org/download/).
+2. Clone the repo:
+   ```bash
+   git clone https://github.com/Prateek-elec/elrs-receiver-pcb.git
+   ```
+3. Open `hardware/kicad/elrs_receiver.kicad_pro`.
 
----
+## Roadmap
 
-## 👤 Author
-**Prateek Sarkar**  
-Embedded Systems • PCB Design (KiCad) • UAV / Robotics
+- [x] Schematic
+- [x] PCB layout
+- [ ] Gerbers + BOM
+- [ ] Bring-up, flashing ELRS firmware and range test
+
+> **Note:** this is a learning design that hasn't been flight-tested yet. Check the RF layout, matching network and ESP8285 clock circuit against the reference designs before you rely on it in the air.
+
+## Contributing
+
+RF folks: reviews of the matching network and layout are very welcome. [Open an issue](https://github.com/Prateek-elec/elrs-receiver-pcb/issues).
+
+## License
+
+[MIT](LICENSE) © Prateek Sarkar
+
+<div align="center">
+
+**If you've ever wondered what's inside an ELRS receiver, give this a ⭐.**
+
+</div>
