@@ -1,6 +1,6 @@
 <div align="center">
 
-# DIY ExpressLRS 2.4 GHz Receiver PCB
+<img src="docs/banner.png" alt="DIY ExpressLRS Receiver" width="100%"/>
 
 **A tiny, open-source ELRS receiver you can study, modify and build: ESP8285 + Semtech SX1280, U.FL antenna, 4-pad UART output, designed in KiCad 9.**
 
@@ -9,11 +9,16 @@
 ![Status](https://img.shields.io/badge/status-layout%20complete-f59e0b?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-22c55e?style=for-the-badge)
 
-<img src="docs/images/3d-top.png" width="45%" alt="3D render, top: ESP8285, pads and bind button"/> <img src="docs/images/3d-bottom.png" width="45%" alt="3D render, bottom: SX1280 and U.FL connector"/>
-
 </div>
 
 ---
+
+## 🔥 Why it hits different
+
+- 📡 **2.4 GHz ExpressLRS:** the open RC link most FPV pilots fly today.
+- 🔬 **See inside a receiver:** ESP8285 + SX1280, every trace visible.
+- 🧩 **Tiny, double-sided layout:** MCU on top, radio and U.FL underneath.
+- 🛠️ **KiCad source included:** fork it, shrink it, make it yours.
 
 ## What it is
 
@@ -68,8 +73,16 @@ RF folks: reviews of the matching network and layout are very welcome. [Open an 
 
 [MIT](LICENSE) © Prateek Sarkar
 
+---
+
 <div align="center">
 
-**If you've ever wondered what's inside an ELRS receiver, give this a ⭐.**
+### If this made you go *"wait, that's sick"* 👀
+
+**Drop a ⭐ so more builders find it, and share it with someone who'd build one.**
+
+[![Share on X](https://img.shields.io/badge/share%20on-X-000000?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/intent/tweet?text=Ever%20wondered%20what%27s%20inside%20an%20ExpressLRS%20receiver%3F%20%F0%9F%93%A1&url=https%3A%2F%2Fgithub.com%2FPrateek-elec%2Felrs-receiver-pcb)
+[![Share on LinkedIn](https://img.shields.io/badge/share%20on-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgithub.com%2FPrateek-elec%2Felrs-receiver-pcb)
+[![Follow](https://img.shields.io/badge/follow-@Prateek--elec-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Prateek-elec)
 
 </div>
