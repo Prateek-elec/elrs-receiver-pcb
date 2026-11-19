@@ -13,7 +13,7 @@
 
 ---
 
-## 🔥 Why it hits different
+## Highlights
 
 - 📡 **2.4 GHz ExpressLRS:** the open RC link most FPV pilots fly today.
 - 🔬 **See inside a receiver:** ESP8285 + SX1280, every trace visible.
@@ -56,6 +56,10 @@ The board uses double-sided placement: the MCU and pads on top, the radio and an
    ```
 3. Open `hardware/kicad/elrs_receiver.kicad_pro`.
 
+## Known issues
+
+- **ESP8285 has no crystal (rev A).** `XTAL_IN` (pin 28) and `XTAL_OUT` (pin 27) on U2 are unconnected, so the MCU won't boot as drawn. The 52 MHz crystal Y1 belongs to the SX1280 radio. **Fix for rev B:** add a 26 MHz crystal (3.2 × 2.5 mm) between pins 27 and 28, with load capacitors to GND sized for the crystal's load capacitance, placed as close to U2 as possible. See Espressif's ESP8285 reference design.
+
 ## Roadmap
 
 - [x] Schematic
@@ -77,7 +81,7 @@ RF folks: reviews of the matching network and layout are very welcome. [Open an 
 
 <div align="center">
 
-### If this made you go *"wait, that's sick"* 👀
+### Found this useful?
 
 **Drop a ⭐ so more builders find it, and share it with someone who'd build one.**
 
