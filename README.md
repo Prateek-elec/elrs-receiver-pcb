@@ -58,7 +58,8 @@ The board uses double-sided placement: the MCU and pads on top, the radio and an
 
 ## Known issues
 
-- **ESP8285 has no crystal (rev A).** `XTAL_IN` (pin 28) and `XTAL_OUT` (pin 27) on U2 are unconnected, so the MCU won't boot as drawn. The 52 MHz crystal Y1 belongs to the SX1280 radio. **Fix for rev B:** add a 26 MHz crystal (3.2 × 2.5 mm) between pins 27 and 28, with load capacitors to GND sized for the crystal's load capacitance, placed as close to U2 as possible. See Espressif's ESP8285 reference design.
+- **ESP8285 crystal: fixed in the schematic, not yet on the PCB.** Rev A left `XTAL_IN` (pin 28) and `XTAL_OUT` (pin 27) on U2 unconnected, so the MCU couldn't boot. (The 52 MHz crystal Y1 belongs to the SX1280 radio.) The schematic now adds **Y2**, a 26 MHz crystal (3.2 × 2.5 mm, 4-pad), with **C13 / C14** 10 pF load capacitors. Match those to your crystal's rated load capacitance. **The PCB layout is still rev A:** Y2, C13 and C14 need placing right next to U2 with short, symmetric traces before you order boards.
+- **D2 (Schottky) is not connected.** Both pins are floating in the schematic. It was probably meant for reverse-polarity protection on the 5 V input. Either wire it in series with the input to U1 or remove it.
 
 ## Roadmap
 
